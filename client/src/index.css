@@ -1,5 +1,29 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+.content {
+  height: 80vh;
+}
+/* you can also override bootstrap default settings */
+.navbar {
+  background-color: #0000008b !important;
+  /* you need to use important to over-ride bootstrap default settings */
+}
+.register-page,
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+/* layout for footer of register, login forms */
+.form-footer-layout {
+  display: flex;
+}
+
+.form-footer-layout .space-margin {
+  margin: 0.5rem;
 }

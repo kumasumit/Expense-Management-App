@@ -20,7 +20,7 @@ const loginUser = async (req, res) => {
     if (user.password !== password) {
       return res.status(401).json({
         success: false,
-        msg: "Password does not match" });
+        msg: "Passwords does not match" });
       //401 is Unauthorized response code
     }
 
