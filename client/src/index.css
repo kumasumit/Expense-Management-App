@@ -8,7 +8,7 @@
 }
 /* you can also override bootstrap default settings */
 .navbar {
-  background-color: #0000008b !important;
+  background-color: grey !important;
   /* you need to use important to over-ride bootstrap default settings */
 }
 .register-page,

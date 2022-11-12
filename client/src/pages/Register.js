@@ -1,13 +1,33 @@
-import React from "react";
-import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Form, Input, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Spinner from "../components/Spinner";
+
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
   //here we use useForm hook of react
   const [form] = Form.useForm();
   //form submit handler here
-  const submitHandler = (values) => {
+  const submitHandler = async (values) => {
     //here we dont have event we have values
     console.log("Success:", values);
+    try {
+      setLoading(true);
+      await axios.post("/users/register", values);
+      // ask rahul >>> ?????
+      // setLoading ko false kab karna hain bhai
+      setLoading(false);
+      message.success("Registration Successful");
+
+      // after registration we redirect to login page
+      navigate("/login");
+    } catch (error) {
+      setLoading(false);
+      message.error("Invalid Credentials", error);
+    }
   };
   //form error handler here
   const onFinishFailed = (errorInfo) => {
@@ -17,9 +37,21 @@ const Register = () => {
   const onReset = () => {
     form.resetFields();
   };
+  //prevent logged in user from accessing register/signup page
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      //if user is logged in we redirect to home page
+      navigate("/");
+    }
+    //here we add navigate as a dependency, whenever the navigate changes the register compoent is rendered,
+    //ask rahul >>> flow of useEffect here
+  }, [navigate]);
+
   return (
     <>
       <div className="register-page">
+        {/* if loading is true only then show the spinner, else show the form */}
+        {loading && <Spinner />}
         <Form
           form={form}
           layout="vertical"
