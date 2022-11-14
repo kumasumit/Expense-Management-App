@@ -17,7 +17,7 @@ app.use(cors());
 
 //home api
 app.get("/", (req, res) => {
-  res.send("Hello from Server");
+  res.send("Hello from Express Server");
 });
 //routes
 //users api route
