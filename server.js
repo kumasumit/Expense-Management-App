@@ -20,9 +20,15 @@ app.get("/", (req, res) => {
   res.send("Hello from Express Server");
 });
 //routes
+
 //users api route
-//this tells the app to use usersRoute.js inside routes folder for the link wesite/api/v1
+//this tells the app to use usersRoute.js inside routes folder for the link wesite/api/v1/users
 app.use("/api/v1/users", require("./routes/usersRoute"));
+
+//transactions api route
+//this tells the app to use transactionsRoute.js inside routes folder for the link wesite/api/v1/transactions
+app.use("/api/v1/transactions", require("./routes/transactionsRoute"));
+
 //port
 const PORT = process.env.PORT || 8080;
 
